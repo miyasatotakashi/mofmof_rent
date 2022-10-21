@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @propert.title %>
+</p>
+
+<p>
+  <strong>Rent:</strong>
+  <%= @propert.rent %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @propert.address %>
+</p>
+
+<p>
+  <strong>Ago:</strong>
+  <%= @propert.ago %>
+</p>
+
+<p>
+  <strong>Remarks:</strong>
+  <%= @propert.remarks %>
+</p>
+
+<%= link_to 'Edit', edit_propert_path(@propert) %> |
+<%= link_to 'Back', properts_path %>
