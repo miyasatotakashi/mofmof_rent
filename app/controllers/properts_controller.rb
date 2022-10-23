@@ -1,25 +1,23 @@
 class PropertsController < ApplicationController
   before_action :set_propert, only: %i[ show edit update destroy ]
 
-  # GET /properts or /properts.json
   def index
     @properts = Propert.all
   end
 
-  # GET /properts/1 or /properts/1.json
   def show
+    @stations = @propert.stations
   end
 
-  # GET /properts/new
   def new
     @propert = Propert.new
+    2.times { @propert.stations.build }
   end
 
-  # GET /properts/1/edit
   def edit
+    @propert.stations.build
   end
 
-  # POST /properts or /properts.json
   def create
     @propert = Propert.new(propert_params)
 
@@ -34,7 +32,6 @@ class PropertsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /properts/1 or /properts/1.json
   def update
     respond_to do |format|
       if @propert.update(propert_params)
@@ -47,7 +44,6 @@ class PropertsController < ApplicationController
     end
   end
 
-  # DELETE /properts/1 or /properts/1.json
   def destroy
     @propert.destroy
     respond_to do |format|
@@ -57,13 +53,11 @@ class PropertsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_propert
       @propert = Propert.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def propert_params
-      params.require(:propert).permit(:title, :rent, :address, :ago, :remarks)
+      params.require(:propert).permit(:title, :rent, :address, :ago, :remarks, stations_attributes: [:route, :name, :minutes])
     end
 end
